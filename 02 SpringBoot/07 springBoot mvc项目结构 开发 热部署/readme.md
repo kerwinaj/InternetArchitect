@@ -138,7 +138,7 @@ application.properties文件中
 
  
 
-### HelloWorld
+## 5. HelloWorld
 
 #### RestController
 
@@ -220,7 +220,9 @@ public class IndexController {
 
  
 
-### 稍微复杂的restful api应用
+## 6.稍微复杂的restful api应用
+
+### 直接在controller处理(不用service)
 
 #### UserRestfulController
 
@@ -339,59 +341,7 @@ public class UserService {
 
  
 
-## 5.常见问题
-
-### Pom.xml
-
-Springboot项目必须要继承的parnet
-
-   ![1571507014808](images/1571507014808.png)
-
-### Pom.xml第一行报错 
-
-   ![1571507018605](images/1571507018605.png)
-
-进入本地库
-
-for /r %i in (*.lastUpdated) do del %i   
-
-然后update
-
-### 缺少或包错误
-
-   ![1571507021688](images/1571507021688.png)
-
-删掉 重新update
-
-### 找不到主类
-
-   ![1571507024547](images/1571507024547.png)
-
-所有错误都解决后
-
-Jar方式运行 首先得有这个jar包
-
-先clean package 生成jar文件，然后再run main方法
-
- 
-
-### 找不到jdk
-
-   ![1571507027980](images/1571507027980.png)
-
-   ![1571507031151](images/1571507031151.png)
-
-把jre的路径换成jdk的
-
- 
-
-### 启动后自动停止
-
-   
-
- ![1571507035054](images/1571507035054.png)
-
-
+## 7.常见问题
 
 ### 热部署
 

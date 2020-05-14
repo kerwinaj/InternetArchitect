@@ -11,14 +11,16 @@ import om.mashibing.springboot.entity.Account;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
-	List<Account> findByIdBetween(int max, int min);
-	
+	// 通过方法名,来生成sql
+	List<Account> findByIdBetween(int min, int max);
+
+	// 通过方法名,来生成sql
 	Account findByLoginNameAndPassword(String loginName, String password);
-	
-	
+
 	// 自定义 hql
-	@Query("select acc from Account acc where acc.id=1 ")
+	@Query("select acc from Account acc where acc.id=1")
 	List<Account> findbyxx();
-	@Query("select acc from Account acc where acc.id=?1 ")
+
+	@Query("select acc from Account acc where acc.id=?1")
 	List<Account> findbyxx2(int id);
 }

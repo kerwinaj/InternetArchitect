@@ -1,2 +1,0 @@
-该项目, 使用jpa链接数据库
-主要看CityRepository和City这两个类的实现
