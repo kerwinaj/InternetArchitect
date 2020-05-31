@@ -1,5 +1,5 @@
 ## 项目(FirstSpringBoot04)
-描述: 是内存保存数据, 还没有使用数据库
+描述: 使用内存来保存数据, 还没有使用数据库
 Get: 接受前台的参数
 
 * @RequestParam("id") Integer id

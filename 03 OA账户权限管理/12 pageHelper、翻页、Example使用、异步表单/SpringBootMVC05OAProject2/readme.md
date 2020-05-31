@@ -417,7 +417,7 @@ src/main/resources/templates/entity.ftl
 
 ### 读取自定义注入内容
 
- 末班文件中加入
+ 模板文件中加入
 
 ``` java
  ${cfg.xxoo}

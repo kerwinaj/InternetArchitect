@@ -216,7 +216,7 @@ public class IndexController {
 
 ![image-20200513211638079](images/image-20200513211638079.png)
 
-
+最重要的是一个servlet : dispatchservlet!!
 
  
 

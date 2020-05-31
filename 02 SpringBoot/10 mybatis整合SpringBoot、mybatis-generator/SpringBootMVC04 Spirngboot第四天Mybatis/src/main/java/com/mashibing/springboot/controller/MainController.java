@@ -16,66 +16,45 @@ import com.mashibing.springboot.service.MenuService;
 @Controller
 public class MainController {
 
-	
 	@Autowired
 	AccountService accSrv;
-	
-	
+
 	@Autowired
 	MenuService menuSrv;
-	
-	
+
 	@RequestMapping("/list")
 	@ResponseBody
 	public Object list () {
 		List<Account>  accounts = accSrv.findAll();
-		
-		
 		List<Menu> menus =  menuSrv.findAll();
-		
-		
 		return menus;
 	}
-	
-	
+
 	@RequestMapping("/add")
 	@ResponseBody
 	public Object add () {
-		
 		accSrv.add();
 		return "ok";
 	}
 	
-	
 	@RequestMapping("/addMenu")
 	@ResponseBody
 	public Object addMenu () {
-		
 		menuSrv.add();
 		return "ok";
 	}
 	
-	
 	@RequestMapping("/menuQuery")
 	@ResponseBody
 	public Object menuQuery (@RequestParam Integer id) {
-		
 		Menu menu = menuSrv.findById(id);
 		return menu;
 	}
-	
-	
-	
+
 	@RequestMapping("/page")
 	@ResponseBody
 	public Object page (@RequestParam(required = false) Integer pageNum,@RequestParam(required = false) Integer pageSize) {
-		
 		List<Menu> menus = menuSrv.findByPage(pageNum,pageSize);
 		return menus;
 	}
-	
-	
-	
-	
-	
 }

@@ -11,17 +11,18 @@ import com.mashibing.springboot.mapper.AccountMapper;
 @Service
 public class AccountService {
 
-	
 	@Autowired
 	AccountMapper mapper;
 	
 	public List<Account> findAll() {
-		
-		return mapper.findAll();
+		List<Account> accountList = mapper.findAll2();
+		System.out.println("findAll:" + accountList.size());
+		accountList = mapper.findAll();
+		System.out.println("findAll:" + accountList.size());
+		return accountList;
 	}
 
 	public void add() {
-		
 		Account account = new Account();
 		account.setAge(19);
 		account.setLocation("beijing");

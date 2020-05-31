@@ -149,6 +149,16 @@ java -jar demo-0.0.1-SNAPSHOT.jar --server.port=60 --dalao.xiaodi.zhangyang.yanz
 
 ## 多环境配置
 
+https://www.jianshu.com/p/f24b312db08b
+
+https://blog.lqdev.cn/2018/07/15/springboot/chapter-five/
+
+https://zhuanlan.zhihu.com/p/60171472
+
+https://www.hangge.com/blog/cache/detail_2459.html#
+
+https://www.hangge.com/blog/cache/detail_2458.html
+
 在实际开发中，我们的一套代码可能会被同时部署到开发、测试、生产等多个服务器中，每个环境中诸如数据库密码等这些个性化配置是避免不了的，虽然我们可以通过自动化运维部署的方式使用外部参数在服务启动时临时替换属性值，但这也意味着运维成本增高。
 
 我们可以通过多套配置来避免对于不同环境修改不同的配置属性

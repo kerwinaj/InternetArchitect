@@ -4,6 +4,46 @@ MyBatis是一个优秀的持久层框架，它对jdbc的操作数据库的过程
 
 
 
+hibernate 与mybatis的比较
+
+> 首先是运行速度，hibernate是在jdbc上进行了一次封装，而mybatis基于原生的jdbc，因此mybatis天生就有运行速度上的优势。
+>
+> 然后mybatis开放了插件接口。也许mybatis团队知道自己人少力单，索性把很多功能接口都开放了。不好分页？网上大神写的分页插件多得很；需要手写sql？按注解生成自动生成sql的插件早就有了；还有缓存的插件等等。可以说，只要肯在mybatis上花时间，你会发现orm这一块的所有问题它都有解决方案。这方面不是说hibernate不好，但是我还真没听说过hibernate有插件了。
+>
+> 还有就是对遗留系统的支持。很多系统在设计之初还没有orm思想，现在想“抢救”一下，用mybatis就比hibernate更合适。因为mybatis可以很容易做到不规范的映射对象和规范的映射对象共存，如果这种系统中再需要增加个需要复杂sql的功能，mybatis只需要把sql手写出来，先把功能运行起来后再看看能不能变成自动生成的sql，而对hibernate来说就很困难了。
+>
+> 作者：李萌
+> 链接：https://www.zhihu.com/question/21104468/answer/85524803
+> 来源：知乎
+> 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+> 我的经验是主要看这3个指标来确定，第一个因素权重最大。
+> 1、数据量、有以下情况的最好就用MyBatis
+>     如果有超过千万级别的表，
+>     如果有单次业务大批量数据提交的需求(百万条及其以上的)，这个尤其不建议用hibernate
+>     如果有单次业务大批量数据读取需求(百万条及其以上的)
+> 2、表关联复杂度
+>     如果主要业务表的关联表超过20个的(大概数量，根据表的大小不同有差异)不建议用hibernate
+> 3、人员
+>     如果开发成员多数不是多年使用hibernate的情况(一般开发水平评估)，建议使用MyBatis
+>
+> 作者：老Tom
+> 链接：https://www.zhihu.com/question/21104468/answer/84997949
+> 来源：知乎
+> 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+jdbc, spring jdbc template --> mybatis --> hibernate(重量级)
+
+mybatis的配置文件, 相对于jpa来说就是解耦了(改个表名啥的就方便了)
+
+## 原理
+
+SqlSessionFactory创建SqlSession
+
+![image-20200514224027030](readme.assets/image-20200514224027030.png)
+
+
+
 ## 配置文件
 
 
@@ -169,6 +209,8 @@ public class AccountService {
 
 ### 引入依赖
 
+主要是: mybatis-spring-boot-starter
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -314,8 +356,7 @@ public class Account {
 	private int age;
 	private String location;
 	private int banlance;
-	public int getId() {
-
+}
 ```
 
 
@@ -340,6 +381,8 @@ logging.level.com.mashibing.springboot.mapper=debug
 
 ## 查找mapper接口
 
+两种方法
+
 ### 在入口加入 MapperScan
 
 @MapperScan("com.mashibing.springboot.mapper")
@@ -359,6 +402,10 @@ MyBatis Generator
 ### 图形化
 
 https://github.com/zouzg/mybatis-generator-gui
+
+对于一个menu表, 会自动生成下面4个文件
+
+![image-20200515010829268](readme.assets/image-20200515010829268.png)
 
 ## 分页查询
 
@@ -380,7 +427,6 @@ https://github.com/zouzg/mybatis-generator-gui
 
 ```java
 	public Object findPage(int pageNum, int pageSize) {
-
 		PageHelper.startPage(pageNum, pageSize);
 		AccountExample example = new AccountExample();
 		return mapper.selectByExample(example );

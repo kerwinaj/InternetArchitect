@@ -15,28 +15,21 @@ public class MenuService {
 
 	@Autowired
 	MenuMapper menuMapper;
-	
-	
+
+
 	public List<Menu> findAll() {
-		
-		
 		MenuExample example = new MenuExample();
-		
-		
-	//	example.createCriteria().andNameEqualTo("aaa");
+		// example.createCriteria().andNameEqualTo("aaa");
 		return menuMapper.selectByExample(example );
 	}
 
 
 	public void add() {
-
 		Menu menu = new Menu();
 		menu.setIndex("0");
 		menu.setName("首页");
 		menu.setRoles("all");
-		
 		menuMapper.insert(menu);
-		
 	}
 
 
@@ -44,18 +37,15 @@ public class MenuService {
 		MenuExample example = new MenuExample();
 		
 		example.createCriteria().andIdEqualTo(id);
-	//	List<Menu> list = menuMapper.selectByExample(example );
+		//	List<Menu> list = menuMapper.selectByExample(example );
 		
 		Menu menu = menuMapper.selectByPrimaryKey(id);
 		return menu;
-		
-		
 	//	return list.size() == 1?list.get(0) : null;
 	}
 
 
 	public List<Menu> findByPage(Integer pageNum, Integer pageSize) {
-
 		PageHelper.startPage(pageNum, pageSize);
 		MenuExample example = new MenuExample();
 		// AOP 
